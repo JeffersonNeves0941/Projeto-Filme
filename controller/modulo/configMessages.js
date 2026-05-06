@@ -7,14 +7,17 @@
  * 
  **********************************************************************************************************/
 
+const { response } = require("express")
+
 //Padronização dos retornos da api(Cabeçario)
 const DEFAULT_MESSAGE =  {
     api_description: 'API para controlar o projeto de filmes',
-    development: 'Kaique Carvalho Costa',
+    development: 'Jefferson Neves',
     version: '1.0.4.26',
     status: Boolean,
     status_code: Number,
-    message: String
+    message: String,
+    response: {}
 }
 
 //Mensagens de ERRO do projeto de filmes
@@ -47,8 +50,25 @@ const ERROR_CONTENT_TYPE = {
 const ERROR_INTERNAL_SERVER_CONTROLLER = {
     status: 'false',
     status_code:500,
-    message: 'Não foi possivel processar a requisição devido a um erro interno no servidor [CONTROLLER].'
+    message
+    
+    : 'Não foi possivel processar a requisição devido a um erro interno no servidor [CONTROLLER].'
 }
+const ERROR_NOT_FOUND = {
+    status: 'false',
+    status_code:404,
+    message: 'Não foram encontrados dados para retorno'
+}
+
+const SUCESS_RESPONSE = {
+    status: true,
+    status_code:200,
+
+}
+
+
+const SUCESS_UPDATED_ITEM = {status: true, status_code: 200, message: 'Item atualizado com sucesso'}
+const SUCESS_DELETED_ITEM = {stauts: true,status_code:200, message:'Item excluido com sucesso'}
 
     module.exports = {
         DEFAULT_MESSAGE,
@@ -56,5 +76,9 @@ const ERROR_INTERNAL_SERVER_CONTROLLER = {
         SUCCESS_CREATED_ITEM,
         ERROR_INTERNAL_SERVER,
         ERROR_CONTENT_TYPE,
-        ERROR_INTERNAL_SERVER_CONTROLLER
+        ERROR_INTERNAL_SERVER_CONTROLLER,
+        ERROR_NOT_FOUND,
+        SUCESS_RESPONSE,
+        SUCESS_UPDATED_ITEM,
+        SUCESS_DELETED_ITEM
     }
